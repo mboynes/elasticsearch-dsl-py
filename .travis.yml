@@ -3,22 +3,13 @@ language: python
 sudo: false
 
 python:
-  - "2.6"
-  - "2.7"
-  - "3.3"
-  - "3.4"
   - "3.5"
 
 env:
   global:
     - WAIT_FOR_ES=1
-  matrix:
-    - ES_VERSION=5.0.0
 
 install:
-  - mkdir /tmp/elasticsearch
-  - wget -O - https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.tar.gz | tar xz --directory=/tmp/elasticsearch --strip-components=1
-  - /tmp/elasticsearch/bin/elasticsearch --daemonize --path.data /tmp 
   - pip install git+https://github.com/elastic/elasticsearch-py.git#egg=elasticsearch
   - pip install .
 
